@@ -72,8 +72,13 @@ public interface CategoryService {
 
 	long count();
 
-	Page<Category> findByNameContaining(String name, Pageable pageable);
+
+	List<Category> findByName(String name);
 
 	List<Category> findByNameContaining(String name);
+
+	Page<Category> findByNameContaining(String name, Pageable pageable);
+
+
 
 }

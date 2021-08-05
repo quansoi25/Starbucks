@@ -12,5 +12,6 @@ import edu.poly.shop.domain.Category;
 @Repository
 public interface CategoryReponsitory extends JpaRepository<Category, Long>{
 	List<Category> findByNameContaining(String name); 
-	Page<Category> findByNameContaining(String name,Pageable pageable); 
+	Page<Category> findByNameContaining(String name,Pageable pageable);
+	List<Category> findByName(String name); 
 }

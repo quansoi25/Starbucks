@@ -14,60 +14,66 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
 	integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+	crossorigin="anonymous" />
 </head>
 <body>
 	<div class="ui container">
-		<br>
-		<div class="ui secondary menu">
-			<img th:src="@{'/images/logoadmin.jpg'}" alt="Avatar"
-				class="avatar">
-			<div class="header item">Nguyễn Hồng Minh Quân</div>
-			<a class="item"> Home </a> <a class="item"> Messages </a> <a
-				class="item"> Friends </a>
-			<div class="right menu ">
-				<div class="item">
-					<div class="ui icon input">
-						<input type="text" placeholder="Search..."> <i
-							class="search link icon"></i>
+		<div th:fragment="_nav">
+			<br>
+			<div class="ui secondary menu">
+				<img th:src="@{'/images/logoadmin.jpg'}" alt="Avatar" class="avatar">
+				<div class="header item">Nguyễn Hồng Minh Quân</div>
+				<a class="item" th:href="@{/user}"> Home </a> 
+				<a class="item"> Messages </a> 
+				<a class="item"> Friends </a>
+				<div class="right menu ">
+					<div class="item">
+						<div class="ui icon input">
+							<input type="text" placeholder="Search..."> <i
+								class="search link icon"></i>
+						</div>
 					</div>
+					<a class="ui item"> Logout </a>
 				</div>
-				<a class="ui item"> Logout </a>
 			</div>
+			<div class="ui divider"></div>
+			<br>
 		</div>
-		<div class="ui divider"></div>
-		<br>
 		<div class="ui grid ui tertiary segment">
 			<div class="four wide column ">
 				<div class="ui secondary vertical pointing fluid menu ">
-					<a class="item" th:href="@{/admin/categories}"> List of products </a> 
-                    <a class="item active" th:href="@{/admin/categories/add}"> Add new products </a> 
-                    <a class="item" th:href="@{/admin/products}"> List of categories </a> 
-                    <a class="item" th:href="@{/admin/products/add}"> Add new categories </a>
-                    <a class="item" th:href="@{/admin/role}"> Decentralization </a>
+					<a class="item" th:href="@{/admin/categories}"> List of categories </a>
+                    <a class="item active" th:href="@{/admin/categories/add}"> Add new categories </a>
+                    <a class="item" th:href="@{/admin/products}"> List of  products</a>
+                    <a class="item" th:href="@{/admin/products/add}"> Add new products </a> 
+                    <a class="item" th:href="@{/admin/role}">Decentralization </a>
 				</div>
 			</div>
 			<div class="twelve wide column">
 				<div class="ui form">
-					<form class="ui form" th:action="@{/admin/categories/saveOrUpdate}" method="post" th:object="${category}">
-            <div class="field">
-              <label>Category ID</label>
-              <input type="hidden" th:field="*{isEdit}">
-              <input class="form-control" th:field="*{categoryId}" readonly>
-              <small th:if="${#fields.hasErrors('categoryId')}" class="form-text text-muted">Category id is
-                required</small>
-            </div>
-            <div class="field">
-              <label>Name</label>
-              <input class="form-control" value="Name" th:field="*{name}">
-            <small th:if="${#fields.hasErrors('name')}" class="form-text text-muted">Name is required or
-              invalid</small>
-            </div>
-			<button class="ui green button">
-				<span th:if="${category.isEdit}">Update</span>
-				<span th:unless="${category.isEdit}">Save</span>
-			  </button>
-          </form>
+					<form class="ui form" th:action="@{/admin/categories/saveOrUpdate}"
+						method="post" th:object="${category}">
+						<div class="field">
+							<label>Category ID</label> <input type="hidden"
+								th:field="*{isEdit}"> <input class="form-control"
+								th:field="*{categoryId}" readonly> <small
+								th:if="${#fields.hasErrors('categoryId')}"
+								class="form-text text-muted">Category id is required</small>
+						</div>
+						<div class="field">
+							<label>Name</label> <input class="form-control" value="Name"
+								th:field="*{name}"> <small
+								th:if="${#fields.hasErrors('name')}"
+								class="form-text text-muted">Name is required or invalid</small>
+						</div>
+						<button class="ui green button">
+							<span th:if="${category.isEdit}">Update</span> <span
+								th:unless="${category.isEdit}">Save</span>
+						</button>
+					</form>
 					</table>
 				</div>
 			</div>

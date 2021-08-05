@@ -10,13 +10,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import edu.poly.shop.domain.Category;
+import edu.poly.shop.domain.Order;
 import edu.poly.shop.domain.Product;
 
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long>{ 
 	@Query("SELECT o FROM Product o WHERE o.category.categoryId = ?1")
-	List<Product> findByCategoryHome(String categoryId);
+	List<Product> findByCategoryHome(Long categoryId);
 	List<Product> findByNameContaining(String name); 
 	
 }

@@ -168,4 +168,18 @@ public long count() {
 @Autowired
 private ProductRepository productRepository;
 
+@Override
+public List<Product> findByUsername(String name) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Product> findByCategoryHome(long categoryId) {
+	// TODO Auto-generated method stub
+	return productRepository.findByCategoryHome(categoryId);
+}
+
+
+
 }

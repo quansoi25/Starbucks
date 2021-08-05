@@ -29,10 +29,10 @@ public class ProductsController {
 	public String page(Model model) {
 		return "user/page";
 	}
-	@RequestMapping("menu")
-	public String menu(Model model) {
-		List<Product> list=ps.findAll();
-		model.addAttribute("items", list);
+	@RequestMapping("menu/{categoryId}")
+	public String menu(Model model,@PathVariable("categoryId")long categoryId) {
+		List<Product> item=ps.findByCategoryHome(categoryId);
+		model.addAttribute("items", item);
 		return "user/index";
 	}
 	@RequestMapping("detail/{productId}")

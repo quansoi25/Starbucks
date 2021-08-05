@@ -4,8 +4,46 @@
 
 <body>
 	<div th:fragment="_cart" class="ui container">
-		<h1 style="margin-left: 3 0px;">Cart Info</h1>
-		<div th:fragment="_tbody">
+		<div class="ui container">
+			<h1 class="ui left aligned header">Responsive UI Examples</h1>
+			<div class="ui two column stackable grid"
+				ng-repeat="item in cart.items">
+				<div class="ten wide column">
+					<div class="ui segment">
+						<div class="ui two column stackable grid">
+							<div class="column">
+								<img class="ui image" th:src="@{'/images/{{item.image}}'}">
+							</div>
+							<div class="column">
+								<div class="header">
+									<h2>{{item.name}}</h2>
+								</div>
+								<div class="meta">
+									<span class="category">${{item.unitPrice|number:2}}</span>
+								</div>
+								<h3>Products will be made immediately upon order</h3>
+								<br> <span>Please wait until the order is finished</span>
+								<h1></h1>
+								<span>Quantity</span> <input type="number" ng-model="item.qty">
+							</div>
+						</div>
+						<a style="color: black; position: absolute; right: 0; top: 0;"
+							ng-click="cart.remove(item.productId)"><i class="times icon"></i></a>
+					</div>
+				</div>
+				<div class="six wide column">
+					<div class="ui segment">
+						<h2>Total</h2>
+						<div class="header">${{item.qty*item.unitPrice|number:2}}</div>
+						<br>
+						<button class="ui inverted red button" ng-click="cart.clear()">Clear</button>
+						<button class="ui inverted blue button">
+							<a th:href="@{/order/checkout}">Checkout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div th:fragment="_tbody">
 			<table class="ui green table">
 				<thead>
 					<tr>
@@ -31,11 +69,11 @@
 						<td><input type="number" ng-model="item.qty"></td>
 						<td>${{item.qty*item.unitPrice|number:2}}</td>
 						<td><button class="ui red button"
-								ng-click="cart.remove(iten.productId)">Remove</button></td>
+								ng-click="cart.remove(item.productId)">Remove</button></td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
+		</div> -->
 	</div>
 </body>
 

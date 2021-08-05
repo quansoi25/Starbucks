@@ -72,6 +72,10 @@ public interface ProductService {
 
 	Product findById1(Long productId);
 
+	List<Product> findByUsername(String name);
+
+	List<Product> findByCategoryHome(long categoryId);
+
 
 
 
