@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout :: dynamic(~{::body})}">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="ui container">
+		<div class="ui center aligned header">
+			<h1>Order Purchasing</h1>
+		</div>
+		<div th:fragment="_user">
+			<div class="ui two column doubling grid">
+				<h2>Purchaser:</h2>
+				<div class="column" id="username"><h2>[[${#request.remoteUser}]]</h2></div>
+				<div class="column">
+					<h2>Order Date:{{order.createDate|date:'dd-MM-yyyy'}}</h2>
+				</div>
+			</div>
+		</div>
+		<h3 class="ui header">Address</h3>
+		<textarea ng-model="order.address" cols="154" rows="5"></textarea>
+		<button class="ui inverted green button" ng-click="order.purchase()">Order</button>
+		<div th:replace="~{/user/cart/view::_cart}"></div>
+	</div>
+	</div>
+	<script>
+	window.onload = function createItem() {
+			sessionStorage.test1 = ("[[${#request.remoteUser}]]");
+		}
+	</script>
+</body>
+
+</html>

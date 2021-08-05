@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/diamonlogo.jpg">
+    <title>PNJ_Shop</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+        integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body ng-app="authority-app" ng-controller="authority-ctrl">
+    <div class="ui container">
+        <br>
+        <div class="ui secondary menu">
+            <img th:src="@{'/images/logoadmin.jpg'}" alt="Avatar" class="avatar">
+            <div class="header item">Nguyễn Hồng Minh Quân</div>
+            <a class="item"> Home </a> <a class="item"> Messages </a> <a class="item"> Friends </a>
+            <div class="right menu ">
+                <div class="item">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search..."> <i class="search link icon"></i>
+                    </div>
+                </div>
+                <a class="ui item"> Logout </a>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <br>
+        <div class="ui grid ui tertiary segment">
+            <div class="four wide column ">
+                <div class="ui secondary vertical pointing fluid menu ">
+                    <a class="item" th:href="@{/admin/categories}"> List of products </a>
+                    <a class="item" th:href="@{/admin/categories/add}"> Add new products </a>
+                    <a class="item" th:href="@{/admin/products}"> List of categories </a>
+                    <a class="item" th:href="@{/admin/products/add}"> Add new categories </a>
+                    <a class="item active" th:href="@{/admin/role}"> Decentralization </a>
+                </div>
+            </div>
+            <div class="twelve wide column">
+                <div class="ui form">
+                    <table class="ui celled table">
+						<thead>
+							<tr>
+								<th></th>
+								<th ng-repeat="role in roles">{{role.name}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="acc in admins">
+								<td scope="row">{{acc.username}}</td>
+								<td ng-repeat="role in roles">
+                                    <input type="checkbox" ng-checked="authority_of(acc,role)" ng-click="authority_changed(acc,role)">
+                                </td>
+							</tr>
+						</tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script th:src="@{'/images/authority-ctrl.js'}"></script>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+
+<body>
+	<nav th:fragment="navbar">
+		<style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap')
+	;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+section {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	padding: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #fff;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header .logo {
+	position: relative;
+	max-width: 80px;
+}
+
+header ul {
+	position: relative;
+	display: flex;
+}
+
+header ul li {
+	list-style: none;
+}
+
+header ul li a {
+	display: inline-block;
+	color: white;
+	font-weight: 400;
+	margin-left: 40px;
+	text-decoration: none;
+}
+
+header ul li a:hover {
+	color: black;
+}
+
+.content {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.content .textBox {
+	position: relative;
+	max-width: 600px;
+}
+
+.content .textBox h2 {
+	color: #333;
+	font-size: 3em;
+	line-height: 1.4em;
+	font-weight: 500;
+}
+
+.content .textBox h2 span {
+	color: #017143;
+	font-size: 1.2em;
+	font-weight: 900;
+}
+
+.content .textBox p {
+	color: #333;
+}
+
+.content .textBox a {
+	display: inline-block;
+	margin-top: 20px;
+	padding: 8px 20px;
+	background: #017143;
+	color: #fff;
+	border-radius: 40px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-decoration: none;
+}
+
+.content .imgBox {
+	width: 600px;
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 50px;
+	margin-top: 50px;
+}
+
+.content .imgBox img {
+	max-width: 340px;
+}
+
+.thumb {
+	position: absolute;
+	left: 50%;
+	bottom: 20px;
+	transform: translate(-50%);
+	display: flex;
+}
+
+.thumb li {
+	list-style: none;
+	display: inline-block;
+	margin: 0 20px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.thumb li img {
+	max-width: 60px;
+}
+
+.thumb li:hover {
+	transform: translate(-15px);
+}
+
+.circle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #017143;
+	clip-path: circle(600px at right);
+}
+
+.textt {
+	color: black;
+	margin-left: 0px;
+}
+
+.ui.grid {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+	margin-right: 2rem;
+}
+
+.ui.inverted.segment, .ui.primary.inverted.segment {
+	background-color: #017143;
+}
+
+.ui.placeholder.segment .ui.two.column.stackable.center.aligned.grid .middle.aligned.row .column
+	{
+	color: #017143;
+}
+</style>
+		<section>
+			<div class="circle"></div>
+			<header>
+				<a href="#"><img th:src="@{'/images/logo.png'}" class="logo"></a>
+				<ul>
+					<th:block th:if="${#request.remoteUser}">
+						<li><a th:href="@{/security/logoff}">Sign out</a></li>
+						<li
+							th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('STAFF')}">
+							<a th:href="@{/admin/products}">Admin</a>
+						</li>
+						<li><a th:href="@{/order/list}"> List Order</a></li>
+					</th:block>
+					<th:block th:unless="${#request.remoteUser}">
+						<li><a th:href="@{/security/login/form}">Sign in</a></li>
+					</th:block>
+					<li>
+						<div class="ui simple dropdown item">
+							<a class="text">Menu</a>
+							<div class="menu">
+								<div class="ui two column grid">
+									<div class="column">
+										<h4 class="ui dividing header">Thức Ăn</h4>
+										<a href="" class="textt">Bánh</a>
+									</div>
+									<div class="column">
+										<h4 class="ui dividing header">Thức Uống</h4>
+										<a href="" class="textt">Thức uống Espresso</a> <br> <a
+											href="" class="textt">Thức uống Sôcôla</a> <br> <a
+											href="" class="textt">Trà pha</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li><a th:href="@{/user/view}"> Cart <span
+							class="cart-basket d-flex align-items-center justify-content-center"
+							style="font-size: .7rem; position: absolute; top: -10px; right: -10px; width: 9px; height: 15px; color: #fff; border-radius: 50%;">
+								{{cart.Count}}</span>
+					</a></li>
+
+				</ul>
+			</header>
+			<div class="content">
+				<div class="textBox">
+					<h2>
+						It's not just Coffee<br>It's<span> Starbucks</span>
+					</h2>
+					<p>Starbucks cam kết mối liên hệ này xuất phát từ sự trân trọng
+						của chúng tôi – chúng tôi cam kết phục vụ sản phẩm cà phê với chất
+						lượng tốt nhất, tạo mối liên kết đến từng khách hàng và thực hiện
+						trách nhiệm với cộng đồng và xã hội tại nơi Starbucks hoạt động
+						kinh doanh.</p>
+					<a href="#">Learn More</a>
+				</div>
+				<div class="imgBox">
+					<img th:src="@{'/images/img1.png'}" class="starbucks">
+				</div>
+			</div>
+			<ul class="thumb">
+				<li><img th:src="@{'/images/thumb1.png'}"
+					onclick="imgSlider('/images/img1.png');changeCirclColor('#017143');changeColorSpan('#017143');changeColorLearnMore('#017143');">
+				</li>
+				<li><img th:src="@{'/images/thumb2.png'}"
+					onclick="imgSlider('/images/img2.png');changeCirclColor('#eb7495');changeColorSpan('#eb7495');changeColorLearnMore('#eb7495')">
+				</li>
+				<li><img th:src="@{'/images/thumb3.png'}"
+					onclick="imgSlider('/images/img3.png');changeCirclColor('#d752b1');changeColorSpan('#d752b1');changeColorLearnMore('#d752b1')">
+				</li>
+			</ul>
+			<script type="text/javascript">
+				function imgSlider(anything) {
+					document.querySelector('.starbucks').src = anything;
+				}
+				function changeCirclColor(color) {
+					const circle = document.querySelector('.circle');
+
+					circle.style.background = color;
+				}
+				function changeColorSpan(color) {
+					const span = document
+							.querySelector('.content .textBox h2 span');
+					span.style.color = color;
+				}
+				function changeColorLearnMore(color) {
+					const span = document.querySelector('.content .textBox a');
+					span.style.background = color;
+				}
+			</script>
+		</section>
+	</nav>
+</body>
+
+</html>

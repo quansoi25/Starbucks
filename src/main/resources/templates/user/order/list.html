@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/layout :: dynamic(~{::body})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="ui container">
+		<hr>
+		<h2>Your order purchased</h2>
+		<table class="ui fixed table">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Order No.</th>
+					<th>Order Date</th>
+					<th>Shipping Address</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="order,state: ${orders}">
+					<td>[[${state.index}]]</td>
+					<td>[[${order.id}]]</td>
+					<td>[[${order.createDate}]]</td>
+					<td>[[${order.address}]]</td>
+					<td>
+						<a th:href="@{|/order/detail/${order.id}|}" class="ui green button">
+							<i class="search icon"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:fragment="dynamic(view)">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+	integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+	integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"
+	integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+	<nav th:insert="~{/layout/menu.html :: navbar}"></nav>
+	<br>
+	<main th:replace="${view}"></main>
+	<hr>
+	<footer>
+		<div class="ui inverted vertical footer segment">
+			<div class="ui container">
+				<div
+					class="ui stackable inverted divided equal height stackable grid">
+					<div class="three wide column">
+						<h4 class="ui inverted header">VỀ CHÚNG TÔI</h4>
+						<div class="ui inverted link list">
+							<a href="#" class="item">Di sản</a> <a href="#" class="item">Công
+								ty</a> <a href="#" class="item">Cơ hội nghề nghiệp</a>
+						</div>
+					</div>
+					<div class="three wide column">
+						<h4 class="ui inverted header">DỊCH VỤ KHÁCH HÀNG</h4>
+						<div class="ui inverted link list">
+							<a href="#" class="item">Câu hỏi thường gặp</a>
+						</div>
+					</div>
+					<div class="three wide column">
+						<h4 class="ui inverted header">LIÊN KẾT NHANH</h4>
+						<div class="ui inverted link list">
+							<a href="#" class="item">Bộ định vị cửa hàng</a> <a href="#"
+								class="item">Dành cho đối tác</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+<script th:src="@{'/images/shopping-cart-app.js'}"></script>
+</html>

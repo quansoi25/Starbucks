@@ -1,0 +1,16 @@
+package edu.poly.shop.reponsitory;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import edu.poly.shop.domain.Order;
+
+@Repository
+public interface OrderReponsitory extends JpaRepository<Order,Long >{
+	@Query("SELECT o FROM Order o WHERE o.account.username=?1")
+	List<Order> findByUsername(String username);
+
+}

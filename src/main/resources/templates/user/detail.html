@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout :: dynamic(~{::body})}">
+
+<head>
+<meta charset="utf-8">
+<title>Detail product</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+	integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+	integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<h1 style="margin-left: 3 0px;">Thông tin sản phẩm</h1>
+	<hr>
+	<div class="ui two column stackable grid" th:object="${item}">
+		<div class="ten wide column">
+			<div class="ui items">
+				<div class="item">
+					<img class="ui medium rounded image"
+						th:src="@{'/images/'+${item.image}}">
+					<div class="middle aligned content">
+						<div class="header">
+							<span>[[${item.nameC}]]</span>
+							<h2>[[${item.name}]]</h2>
+							<p>
+								[[${item.unitPrice}]]<span>đ</span>
+							</p>
+						</div>
+						<div class="description">
+							<span>[[${item.description}]]</span>
+						</div>
+						<div class="extra">
+							<div class="ui right floated button"
+								th:attr="ng-click=@{|cart.add(${item.productId})|}">Order</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui segment" style="background-color: #017143;">
+					<i class="coffee icon"></i>
+					<h2>Thành phần</h2>
+					<span>[[${item.tv}]]</span>
+				</div>
+			</div>
+		</div>
+		<div class="six wide column">
+			<div class="ui segment" style="background-color: #017143;">
+				<i class="exclamation icon"></i>
+				<h2>Thông tin dinh dưỡng</h2>
+				<span>Thông tin dinh dưỡng được tính toán dựa trên công thức
+					nấu ăn tiêu chuẩn của chúng tôi. Chỉ thay đổi kích thước đồ uống
+					mới cập nhật thông tin này. Các tùy chỉnh khác sẽ không.</span>
+			</div>
+			<div class="ui segment" style="background-color: #017143;">
+				<i class="exclamation icon"></i>
+				<h2>Chất gây dị ứng</h2>
+				<span>Chúng tôi không thể đảm bảo rằng bất kỳ sản phẩm không
+					đóng gói nào được phục vụ trong cửa hàng của chúng tôi đều không có
+					chất gây dị ứng vì chúng tôi sử dụng thiết bị dùng chung để lưu
+					trữ, chuẩn bị và phục vụ chúng. Khách hàng bị dị ứng có thể tìm
+					thông tin thành phần của sản phẩm trên nhãn của các sản phẩm đóng
+					gói của chúng tôi hoặc trực tuyến tại Starbucks.com/menu.</span>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

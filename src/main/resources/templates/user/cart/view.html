@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout :: dynamic(~{::body})}">
+
+<body>
+	<div th:fragment="_cart" class="ui container">
+		<h1 style="margin-left: 3 0px;">Cart Info</h1>
+		<div th:fragment="_tbody">
+			<table class="ui green table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Amount</th>
+						<th><button class="ui inverted red button"
+								ng-click="cart.clear()">Clear</button></th>
+						<th><button class="ui inverted blue button">
+								<a th:href="@{/order/checkout}">Checkout</a>
+							</button></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in cart.items">
+						<td><img class="ui small image"
+							th:src="@{'/images/{{item.image}}'}"></td>
+						<td>{{item.name}}</td>
+						<td>${{item.unitPrice|number:2}}</td>
+						<td><input type="number" ng-model="item.qty"></td>
+						<td>${{item.qty*item.unitPrice|number:2}}</td>
+						<td><button class="ui red button"
+								ng-click="cart.remove(iten.productId)">Remove</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>
