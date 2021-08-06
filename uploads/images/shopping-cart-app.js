@@ -71,4 +71,15 @@ app.controller("shopping-cart-ctrl", function($scope, $http) {
 			})
 		}
 	}
+	$scope.form = {}
+    $scope.create= function (){
+        var item=angular.copy($scope.form);
+        $http.post("/rest/register",item).then(resp => {
+			alert("Registration successful")
+			location.href="/security/login/form";
+            console.log("Success",resp);
+        }).catch(err => {
+            console.log("Error",err);
+        })
+    }
 })

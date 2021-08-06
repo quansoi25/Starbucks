@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.shop.domain.Authorities;
+import edu.poly.shop.reponsitory.AuthoritiesReponsitory;
 import edu.poly.shop.service.AuthoritiesService;
 
 @CrossOrigin("*")
@@ -23,7 +24,8 @@ import edu.poly.shop.service.AuthoritiesService;
 public class AuthoritiesRestController {
 	@Autowired
 	AuthoritiesService authoritiesService;
-	
+	@Autowired
+	AuthoritiesReponsitory ar;
 	@GetMapping
 	public List<Authorities> finAll(@RequestParam("admin") Optional<Boolean>admin){
 		if(admin.orElse(false)) {
@@ -31,12 +33,21 @@ public class AuthoritiesRestController {
 		}
 		return authoritiesService.findAll();
 	}
-	@PostMapping
-	public Authorities post(@RequestBody Authorities auth) {
-		return authoritiesService.create(auth);
-	}
+//	@PostMapping
+//	public Authorities post(@RequestBody Authorities auth) {
+//		return authoritiesService.create(auth);
+//	}
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
-		authoritiesService.delete(id);
+		ar.deleteById(id);
+	}
+	@PostMapping
+	public Authorities post1(@RequestBody Authorities auth) {
+		ar.save(auth);
+		return auth;
+	}
+	@GetMapping("{id}")
+	public Authorities getOne(@PathVariable("id") Integer id) {
+		return ar.findById(id).get();
 	}
 }

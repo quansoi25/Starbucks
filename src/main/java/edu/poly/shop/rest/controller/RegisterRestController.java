@@ -1,35 +1,32 @@
 package edu.poly.shop.rest.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.poly.shop.domain.Account;
 import edu.poly.shop.reponsitory.AccountReponsitory;
-import edu.poly.shop.service.AccountService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/accounts")
-public class AccountRestController {
+@RequestMapping("/rest/register")
+public class RegisterRestController {
 @Autowired
-AccountService accountService;
-@Autowired
-AccountReponsitory ar;
-@GetMapping
-public List<Account> getAll(){
-	return accountService.findAll();
+AccountReponsitory accountReponsitory;
+@PostMapping
+public Account post(@RequestBody Account username) {
+	accountReponsitory.save(username);
+	return username;
 }
-@GetMapping("{username}")
-public List<Account> getOne(@PathVariable("username") String username){
-	return ar.findByUsername(username);
+@GetMapping
+public List<Account> getAll(Model model) {
+	return accountReponsitory.findAll();
 }
 }

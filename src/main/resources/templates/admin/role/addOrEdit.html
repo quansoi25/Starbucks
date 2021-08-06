@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="img/diamonlogo.jpg">
-    <title>PNJ_Shop</title>
+    <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
         integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -15,10 +14,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"
+        integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body ng-app="authority-app" ng-controller="authority-ctrl">
+<body>
     <div class="ui container">
         <div th:replace="~{/admin/categories/addOrEdit::_nav}"></div>
         <div class="ui grid ui tertiary segment">
@@ -26,33 +27,14 @@
                 <div class="ui secondary vertical pointing fluid menu ">
                     <a class="item" th:href="@{/admin/categories}"> List of categories </a>
                     <a class="item" th:href="@{/admin/categories/add}"> Add new categories </a>
-                    <a class="item" th:href="@{/admin/products}"> List of  products</a>
+                    <a class="item" th:href="@{/admin/products}"> List of products</a>
                     <a class="item" th:href="@{/admin/products/add}"> Add new products </a>
                     <a class="item active" th:href="@{/admin/role}"> Decentralization </a>
-                </div>
-            </div>
-            <div class="twelve wide column">
-                <div class="ui form">
-                    <table class="ui celled table">
-						<thead>
-							<tr>
-								<th></th>
-								<th ng-repeat="role in roles">{{role.name}}</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="acc in admins">
-								<td scope="row">{{acc.username}}</td>
-								<td ng-repeat="role in roles">
-                                    <input type="checkbox" ng-checked="authority_of(acc,role)" ng-click="authority_changed(acc,role)">
-                                </td>
-							</tr>
-						</tbody>
-					</table>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script th:src="@{'/images/authority-ctrl.js'}"></script>
+
+
 </html>

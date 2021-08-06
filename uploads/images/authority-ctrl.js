@@ -3,7 +3,6 @@ app.controller("authority-ctrl",function($scope,$http,$location){
     $scope.roles=[];
     $scope.admins=[];
     $scope.authorities=[];
-
     $scope.initialize = function(){
         $http.get("/rest/roles").then(resp=>{
             $scope.roles=resp.data;
@@ -50,6 +49,7 @@ app.controller("authority-ctrl",function($scope,$http,$location){
             alert('Permissions revoked failed');
             console.log("Error: " + error);
         })
-    }
+    }  
     $scope.initialize();
+
 })
